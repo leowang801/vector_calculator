@@ -1,4 +1,13 @@
-from cmath import sqrt
+from cmath import acos, sqrt
+
+# calculates magnitude of vector
+def magnitude(a):
+    x = 0
+    sum_squares = 0
+    while x < len(a):
+        sum_squares += a[x] ** 2
+    result = sqrt(sum_squares)
+    return result
 
 
 # calculates dot product of 2 vectors
@@ -47,6 +56,13 @@ def plane_from_points():
                                     + str(n[2]) + "z + "
                                     + str(d)
                                     + " = 0")
+
+# find angle between two planes
+def angle_between_planes(n1, n2):
+    cos_theta = abs(dot_prod(n1, n2)) / (magnitude(n1) * magnitude(n2))
+    result = acos(cos_theta)
+    return result
+
 
 def main():
     choice = int(input("Make choice: \n"
