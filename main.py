@@ -1,7 +1,27 @@
-
 from cmath import sqrt
 
-def shortest_dist_point_line():
+
+# calculates dot product of 2 vectors
+def dot_prod(a, b):
+    if len(a) != len(b):
+        raise Exception("Vectors must be of the same length")
+
+    x = 0
+    result = 0
+    while x < len(a):
+        result += a[x] * b[x]
+    return result
+
+
+# calculates cross product of vectors a and b in R3
+def cross_prod(a, b):
+    result = [a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0]]
+    return result
+
+# shortest distance between a point and a line or a plane
+def shortest_dist_point_line_plane():
     point_x, point_y, point_z = [float(num) for num in input("Enter point x, y, z: ").split()]
     line_a, line_b, line_c, line_d = [float(num) for num in 
                                         input("Enter A, B, C, D in equation for line in the form Ax + By + Cz + D = 0: ").split()]
@@ -10,12 +30,7 @@ def shortest_dist_point_line():
 
     print(dist)
 
-def cross_prod(a, b):
-    result = [a[1] * b[2] - a[2] * b[1],
-            a[2] * b[0] - a[0] * b[2],
-            a[0] * b[1] - a[1] * b[0]]
-    return result
-
+# find equation of plane in form ax + by + z + d = 0
 def plane_from_points():
     x1, y1, z1 = [float(num) for num in input("Enter first point: ").split()]
     x2, y2, z2 = [float (num) for num in input("Enter second point: ").split()]
@@ -39,7 +54,7 @@ def main():
                                     "2 for equation of plane given 3 points: "))
 
     if (choice == 1):
-        shortest_dist_point_line()
+        shortest_dist_point_line_plane()
     else:
         plane_from_points()
 
